@@ -1,0 +1,20 @@
+#!/bin/bash
+# Neolink Process Monitor
+# Restart Neolink Video Server When It Goes Down
+
+RESTART="/usr/local/bin/neolink --config /etc/neolink.conf &"
+ 
+#Path to pgrep command
+PGREP="/usr/bin/pgrep"
+ 
+# neolink daemon name
+NEOLINK="neolink"
+ 
+# Find neolink pid
+$PGREP ${NEOLINK}
+ 
+if [ $? -ne 0 ] # if neolink not running 
+then
+ # restart neolink
+ $RESTART
+fi
